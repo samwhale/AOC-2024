@@ -1,23 +1,22 @@
-from parse_data import parseData
+from pathlib import Path
 
-# Day 1
-# could make this more efficient on import, but this is enough
-parsedData = parseData('data/day1.txt')
+print(Path(__file__).parent.parent)
+data = (Path(__file__).parent.parent / 'data/day1.txt').read_text()
+
+# What is the total distance between your lists?
+
 leftList = []
 rightList = []
 
-# What is the total distance between your lists?
-for row in parsedData:
-  leftList.append(row[0])
-  rightList.append(row[1])
+for line in data.splitlines():
+  left, right = map(int, line.split())
+  leftList.append(left)
+  rightList.append(right)
 
 leftList.sort()
 rightList.sort()
 
-resultList = []
-
-for i in (range(len(leftList))):
-  resultList.append(abs(leftList[i] - rightList[i]))
+resultList = [abs(left - right) for left, right in zip(leftList, rightList)]
 
 print("Solution 1", sum(resultList))
 
