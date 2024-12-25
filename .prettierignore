@@ -1,0 +1,5 @@
+build
+coverage
+data
+node_modules
+package.json
