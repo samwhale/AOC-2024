@@ -20,9 +20,12 @@ function parseWithDoAndDont(str) {
   const splitOnDo = str.split('do()');
 
   let result = 0;
+
   for (const doSplit of splitOnDo) {
     const splitOnDont = doSplit.split("don't()");
 
+    // First section is the section between the last do and the first don't.
+    // This part is counted.
     result += parse(splitOnDont[0]);
   }
 
