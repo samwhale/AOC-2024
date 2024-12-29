@@ -17,21 +17,13 @@ function parse(str) {
 }
 
 function parseWithDoAndDont(str) {
-  const splitStr = str.split(/(do\(\)|don't\(\))/g);
+  const splitOnDo = str.split(/do\(\)/g);
 
-  let enabled = true;
   let result = 0;
+  for (const doSplit of splitOnDo) {
+    const splitOnDont = doSplit.split(/don't\(\)/g);
 
-  for (const part of splitStr) {
-    if (part === 'do()') {
-      enabled = true;
-    } else if (part === "don't()") {
-      enabled = false;
-    }
-
-    if (enabled) {
-      result += parse(part);
-    }
+    result += parse(splitOnDont[0]);
   }
 
   return result;
