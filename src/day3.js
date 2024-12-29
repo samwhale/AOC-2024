@@ -17,11 +17,11 @@ function parse(str) {
 }
 
 function parseWithDoAndDont(str) {
-  const splitOnDo = str.split(/do\(\)/g);
+  const splitOnDo = str.split('do()');
 
   let result = 0;
   for (const doSplit of splitOnDo) {
-    const splitOnDont = doSplit.split(/don't\(\)/g);
+    const splitOnDont = doSplit.split("don't()");
 
     result += parse(splitOnDont[0]);
   }
